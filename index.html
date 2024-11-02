@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dr.FEELGOOD</title>
+    <style>
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Body styling */
+        body {
+            font-family: Arial, sans-serif;
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Trippy Background */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #ff0000, #ff8000, #ffff00, #00ff00, #00ffff, #0000ff, #ff00ff, #ff0000);
+            background-size: 400% 400%;
+            z-index: -1;
+            animation: trippyBackground 10s ease infinite;
+        }
+
+        /* Trippy Background Animation */
+        @keyframes trippyBackground {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Navigation bar styling */
+        nav {
+            background-color: #333;
+            color: #fff;
+            padding: 1rem;
+            text-align: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 1rem;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #ff6600;
+        }
+
+        /* Hero section styling */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: #fff;
+            padding: 0 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            animation: fadeInDown 2s ease-out;
+        }
+
+        /* Rainbow Text Animation */
+        .hero p {
+            font-size: 1.5rem;
+            margin-top: 1rem;
+            background: linear-gradient(45deg, #ff0000, #ff8000, #ffff00, #00ff00, #00ffff, #0000ff, #ff00ff, #ff0000);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            animation: rainbowText 3s ease-in-out infinite;
+        }
+
+        /* Rainbow Text Animation */
+        @keyframes rainbowText {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Information blocks */
+        .info-blocks {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            padding: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .info-block {
+            flex: 1 1 45%;
+            padding: 1rem;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            text-align: center;
+        }
+
+        .info-block:hover {
+            transform: translateY(-10px);
+        }
+
+        .info-block img {
+            background-color: #ddd;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+
+        .product-select, .quantity-select {
+            width: 100%;
+            padding: 0.5rem;
+            margin: 0.5rem 0;
+            font-size: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .buy-button {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.5rem 1rem;
+            background-image: url('BUYNOW.jpg');
+            background-size: cover;
+            width: 120px;
+            height: 40px;
+            cursor: pointer;
+            border: none;
+        }
+
+        /* Contact section */
+        .contact {
+            background-color: #333;
+            color: #fff;
+            padding: 2rem;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .contact h2 {
+            margin-bottom: 1rem;
+        }
+
+        .contact form {
+            max-width: 500px;
+            margin: auto;
+        }
+
+        .contact input,
+        .contact textarea {
+            width: 100%;
+            padding: 0.5rem;
+            margin: 0.5rem 0;
+            border: none;
+            border-radius: 4px;
+        }
+
+        .contact button {
+            padding: 0.5rem 1rem;
+            background-color: #ff6600;
+            border: none;
+            color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .contact button:hover {
+            background-color: #e55b00;
+        }
+
+        /* Footer styling */
+        footer {
+            background-color: #222;
+            color: #fff;
+            text-align: center;
+            padding: 1rem;
+            margin-top: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Modal Styling */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 10000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            align-items: center;
+            justify-content: center;
+        }
+        .modal-content {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            width: 300px;
+            text-align: center;
+        }
+        .modal input {
+            width: 100%;
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+        .modal button {
+            padding: 10px 20px;
+            background-color: #ff6600;
+            border: none;
+            color: #fff;
+            cursor: pointer;
+        }
+        .modal .btc-address {
+            margin-top: 15px;
+            font-weight: bold;
+            color: #333;
+            font-size:10px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div>
+            <h1 style="background-color:#000">WE GOT SHEETz</h1>
+            <p style="background-color:#000">SCROLL BELOW. BUY SOME BEFORE WE GET SHUTDOWN!</p>
+        </div>
+    </section>
+
+    <!-- Information Blocks Section -->
+    <section class="info-blocks" id="about">
+        <div class="info-block">
+            <img src="IMG_8981.jpg" alt="Product Image 1" width="300" height="300">
+            <h2>Carebear Sheet</h2>
+            <p>Your gateway into wonderland.</p>
+            <select class="product-select">
+                <option value="tab">Tab</option>
+                <option value="sheet">Sheet</option>
+                <option value="strip">Strip</option>
+            </select>
+            <select class="quantity-select">
+                <option value="1">1 product</option>
+                <option value="2">2 products</option>
+                <option value="3">3 products</option>
+                <option value="4">4 products</option>
+                <option value="5">5 products</option>
+            </select>
+            <button class="buy-button" onclick="openModal()"></button>
+        </div>
+        <div class="info-block">
+            <img src="IMG_8892.jpeg" alt="Product Image 2" width="300" height="300">
+            <h2>MonaSheetsah</h2>
+            <p>Experience the renaissance as if you were there.</p>
+            <select class="product-select">
+                <option value="tab">Tab</option>
+                <option value="sheet">Sheet</option>
+                <option value="strip">Strip</option>
+            </select>
+            <select class="quantity-select">
+                <option value="1">1 product</option>
+                <option value="2">2 products</option>
+                <option value="3">3 products</option>
+                <option value="4">4 products</option>
+                <option value="5">5 products</option>
+            </select>
+            <button class="buy-button" onclick="openModal()">Buy Now</button>
+        </div>
+    </section>
+
+    <!-- Modal for BTC Payment -->
+    <div id="paymentModal" class="modal">
+        <div class="modal-content">
+            <h2>Enter Your Details</h2>
+            <input type="text" id="name" placeholder="Name" required>
+            <input type="text" id="address" placeholder="Address" required>
+            <input type="email" id="email" placeholder="Email" required>
+            <input type="text" id="phone" placeholder="Phone Number (Optional)">
+            <button onclick="showPaymentInfo()">Continue</button
+>go
+
+            <!-- BTC Info Section -->
+            <div id="btcInfo" style="display:none; margin-top: 15px;">
+                <p>Please send your BTC payment to the following address:</p>
+                <p class="btc-address">1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa</p>
+                <p>In order to finalize your order after you have paid, please contact us on Telegram at:</p>
+                <a href="https://t.me/doc_feel_g00d"><p><strong>@doc_feel_good</strong></p></a>
+                <button onclick="closeModal()">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 MySheetz Inc.</p>
+    </footer>
+
+<script>
+    // Function to Open Modal
+    function openModal() {
+        document.getElementById("paymentModal").style.display = "flex";
+    }
+
+    // Function to Show Payment Info
+    function showPaymentInfo() {
+        const name = document.getElementById("name").value;
+        const address = document.getElementById("address").value;
+        const email = document.getElementById("email").value;
+
+        if (name && address && email) {
+            // Display BTC Info Section
+            document.getElementById("btcInfo").style.display = "block";
+        } else {
+            alert("Please fill out all required fields.");
+        }
+    }
+
+    // Function to Close Modal
+    function closeModal() {
+        document.getElementById("paymentModal").style.display = "none";
+    }
+</script>
+
+</body>
+</html>
